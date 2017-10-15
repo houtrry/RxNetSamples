@@ -77,8 +77,7 @@ final public class NetStatusObservable extends Observable<NetworkInfo> {
             String action = intent.getAction();
             if (action.equals(ConnectivityManager.CONNECTIVITY_ACTION)) {
                 Log.d("mark", "网络状态已经改变");
-                ConnectivityManager connectivityManager = (ConnectivityManager)
-                        context.getSystemService(Context.CONNECTIVITY_SERVICE);
+                ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
                 NetworkInfo info = connectivityManager.getActiveNetworkInfo();
                 if(info != null && info.isAvailable()) {
                     String name = info.getTypeName();
