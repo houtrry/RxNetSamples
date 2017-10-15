@@ -30,11 +30,9 @@ final public class NetAvailableObservable extends Observable<Boolean> {
 
     @Override
     protected void subscribeActual(Observer<? super Boolean> observer) {
-        IntentFilter mFilter = new IntentFilter();
-        mFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
         NetReReceiver netReReceiver = new NetReReceiver(observer);
         observer.onSubscribe(netReReceiver);
-        mContext.registerReceiver(netReReceiver, mFilter);
+        mContext.registerReceiver(netReReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
     }
 
 

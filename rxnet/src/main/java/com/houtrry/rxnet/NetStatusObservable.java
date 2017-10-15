@@ -30,11 +30,9 @@ final public class NetStatusObservable extends Observable<NetworkInfo> {
 
     @Override
     protected void subscribeActual(Observer<? super NetworkInfo> observer) {
-        IntentFilter mFilter = new IntentFilter();
-        mFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
         NetReReceiver netReReceiver = new NetReReceiver(observer);
         observer.onSubscribe(netReReceiver);
-        mContext.registerReceiver(netReReceiver, mFilter);
+        mContext.registerReceiver(netReReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
     }
 
     static final class NetReReceiver extends BroadcastReceiver implements Disposable {
