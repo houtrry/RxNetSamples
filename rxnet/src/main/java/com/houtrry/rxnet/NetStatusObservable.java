@@ -53,7 +53,6 @@ final public class NetStatusObservable extends Observable<NetworkInfo> {
 
         @Override
         public void dispose() {
-            // TODO: 2017/10/15 没考虑线程问题, 如果是在子线程, 会出现什么问题呢?
             if (unSubscribed.compareAndSet(false, true)) {
                 if (Looper.myLooper() == Looper.getMainLooper()) {
                     onDispose();
